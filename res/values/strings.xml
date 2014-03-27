@@ -1,5 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">BallThemAll</string>
+    <string name="title_activity_main">Ball_Game</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_title">"Ball'em All !!"</string>
 
 </resources>
