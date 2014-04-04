@@ -3,6 +3,7 @@ package com.androidproject.ballthemall;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +35,8 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			
-			setContentView(R.layout.activity_settings);
+			Intent i = new Intent(MainActivity.this,SettingsActivity.class);
+			startActivity(i);
 		}
 		
 	};
