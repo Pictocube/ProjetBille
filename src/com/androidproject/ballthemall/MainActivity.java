@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
 	
 	private Button start;  // declaration bouton start
 	private Button settings;  // declaration bouton settings
+	public static Intent svc;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,8 +50,24 @@ public class MainActivity extends Activity {
         start.setOnClickListener(startListener); // affecte le listener correspondant
         settings = (Button) findViewById(R.id.button_settings);  // recupere le bouton settings declare dans activity_main.xml
         settings.setOnClickListener(settingsListener);  // affecte le listener correspondant
+        
+        svc=new Intent(this, BackgroundSoundService.class);
+        startService(svc);
 	}
+	
+	public void startMusicService(){
+		startService(svc);
+	}
+	
+	public void stopMusicService() {
+		stopService(svc);
+	}
+	
+	public void onDestroy() {
 
+		stopMusicService();
+		super.onDestroy();
+    }
 
 
 }

@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context=".SettingsActivity" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -22,22 +22,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/stat_music"
                 android:textColor="#FFFFFFFF"
                 android:textSize="12sp" />
-			
+			 
             <ToggleButton
                 android:id="@+id/toggleButtonMusic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp" 
-                android:layout_gravity="right"/>
+                android:layout_marginTop="5dp"
+                android:checked="true"
+                android:textOff="Off"
+                android:textOn="On" />
 
-        </LinearLayout>
+        </RelativeLayout>
         
-         <LinearLayout
+         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -54,14 +57,31 @@
                 android:textColor="#FFFFFFFF"
                 android:textSize="12sp" />
 			 
-            <ToggleButton
-                android:id="@+id/toggleButtonLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp" />
+			<RadioGroup
+			    android:id="@+id/groupLang"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:checkedButton="@+id/langen"
+			    android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+			    android:orientation="vertical">
+			    
+			    <RadioButton 
+			      android:id="@+id/langfr"
+			      android:layout_width="wrap_content"
+			      android:layout_height="wrap_content"
+			      android:text="@string/francais"/>
+			    
+			    <RadioButton 
+			      android:id="@+id/langen"
+			      android:layout_width="wrap_content"
+			      android:layout_height="wrap_content"
+			      android:text="@string/english"/>
+		    
+  			</RadioGroup>
 
             
-        </LinearLayout>
+        </RelativeLayout>
 
 </LinearLayout>
