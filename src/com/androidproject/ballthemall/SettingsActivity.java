@@ -2,7 +2,8 @@ package com.androidproject.ballthemall;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -15,19 +16,25 @@ public class SettingsActivity extends Activity {
 	private TextView textBGM; // TextView l'état de la musique de fond
 	private boolean bgmEnable = false;
 	private String statMusic;
+	private String choosenLang = "English";
+	public final static String PREF_FILE = "GamerPref";
+	private SharedPreferences preferences;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		preferences = getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE); // recupere les preferences de l'utilisateur
+		
 		setContentView(R.layout.activity_settings);
 
 		// On récupère l'intent qui a lancé cette activité
-	    Intent i = getIntent();
+	    //Intent i = getIntent();
 		textBGM = (TextView) findViewById(R.id.bgMusic);
 		
 	    toggleButtonMusic = (ToggleButton)  findViewById(R.id.toggleButtonMusic); // declaration du ToggleButton d'activation de la musique de fond
 		toggleButtonMusic.setOnCheckedChangeListener(runMusicListener); // affectation du Listener
 		
+		loadPreferences(); // chargement des preferences de l'utilisateur
 		toggleButtonMusic.setChecked(bgmEnable);
 
 	}
@@ -60,7 +67,24 @@ public class SettingsActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 	    //moveTaskToBack(true);
+		saveSettings();
 	    this.finish();
+	}
+	
+	// affectation des preferences par defaut
+	private void loadPreferences() {
+		bgmEnable = preferences.getBoolean("activMusic", false); // musique de fond desactive
+		choosenLang = preferences.getString("language", "English"); // valeur du delay a 5
+
+	}
+
+	// fonction permettant de sauvegarder les parametres
+	private void saveSettings()
+	{
+		SharedPreferences.Editor editor = preferences.edit(); 
+		editor.putBoolean("activMusic", bgmEnable);
+		editor.putString("lang", choosenLang);
+		editor.commit();
 	}
 
 }

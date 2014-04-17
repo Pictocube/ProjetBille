@@ -1,9 +1,12 @@
 package com.androidproject.ballthemall;
 
-
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +16,7 @@ public class MainActivity extends Activity {
 	private Button start;  // declaration bouton start
 	private Button settings;  // declaration bouton settings
 	public static Intent svc;
+	protected static SharedPreferences prefs;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -26,7 +30,8 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			Intent i = new Intent(MainActivity.this,WorldSelectorActivity.class);
+			startActivity(i);
 			
 		}
 	};
@@ -51,9 +56,16 @@ public class MainActivity extends Activity {
         settings = (Button) findViewById(R.id.button_settings);  // recupere le bouton settings declare dans activity_main.xml
         settings.setOnClickListener(settingsListener);  // affecte le listener correspondant
         
+        prefs = getSharedPreferences(SettingsActivity.PREF_FILE, Context.MODE_PRIVATE);
+        
         svc=new Intent(this, BackgroundSoundService.class);
-        startService(svc);
+        
+        if(prefs.getBoolean("activMusic", false)){
+        	startService(svc);
+        }
+        //startService(svc);
 	}
+	
 	
 	public void startMusicService(){
 		startService(svc);

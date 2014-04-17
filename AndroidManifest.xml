@@ -6,16 +6,16 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" 
-        />
+        android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
-        <service android:name=".BackgroundSoundService" android:enabled="true" /> 
+        <service
+            android:name="com.androidproject.ballthemall.BackgroundSoundService"
+            android:enabled="true" />
 
         <activity
             android:name="com.androidproject.ballthemall.MainActivity"
@@ -24,16 +24,20 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.androidproject.ballthemall.SettingsActivity"
-            android:label="@string/title_activity_settings" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:label="@string/title_activity_settings"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-
-    
+        <activity
+            android:name="com.androidproject.ballthemall.WorldSelectorActivity"
+            android:label="@string/title_activity_world_selector" 
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
     </application>
 
 </manifest>
