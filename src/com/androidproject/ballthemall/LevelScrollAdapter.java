@@ -16,8 +16,10 @@ import android.widget.TextView;
 public class LevelScrollAdapter extends BaseAdapter {
 
 	private ArrayList<String> levelList; 
+	private int listRessource[] = {R.drawable.cadreword1,R.drawable.cadreword2,R.drawable.cadreword3,R.drawable.cadreword4};
 	private Context cont; // donne acces aux ressources de l'activity
 	private LayoutInflater infl; // recupere les informations de la ressource du layout
+	int a;
 	
 	public LevelScrollAdapter(Context c){
 		cont = c; // affectation du context de l'activity
@@ -28,6 +30,13 @@ public class LevelScrollAdapter extends BaseAdapter {
 		levelList.add("MOthaFUkA");
 		levelList.add("IONION");
 		levelList.add("Prout ");
+		
+		a = R.drawable.cadreword1;
+		/*listRessource[0] = R.drawable.cadreword1;
+		listRessource[1] = R.drawable.cadreword2;
+		listRessource[2] = R.drawable.cadreword3;
+		listRessource[3] = R.drawable.cadreword4;*/
+
 	}
 	
 	@Override
@@ -74,7 +83,7 @@ public class LevelScrollAdapter extends BaseAdapter {
 	 
 	    
 	    holder.titleWorld.setText(levelList.get(pos).toString()); // renseigne le champ date
-	    holder.iconWorld.setBackgroundResource(R.drawable.ic_launcher);
+	    holder.iconWorld.setImageResource(listRessource[pos]);
 
 	    
 	    return convertView;
