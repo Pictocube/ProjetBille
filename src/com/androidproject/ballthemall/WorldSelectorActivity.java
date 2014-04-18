@@ -5,20 +5,19 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 
 public class WorldSelectorActivity extends Activity {
 
 	//HorizontalScrollView listViewWorlds;
-	ListView listViewWorlds;
+	HorizontalListView listViewWorlds;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_world_selector);
 		
-		listViewWorlds = (ListView)findViewById(R.id.listViewLevel);  // recupere la ListView 
+		listViewWorlds = (HorizontalListView)findViewById(R.id.listViewLevel);  // recupere la ListView 
 		 
 		listViewWorlds.setAdapter(new LevelScrollAdapter(this));
 		listViewWorlds.setOnItemClickListener(onLevelSelectListener);
