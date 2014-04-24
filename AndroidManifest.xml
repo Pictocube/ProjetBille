@@ -6,8 +6,12 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
+    <uses-feature
+    	android:name="android.hardware.sensor.accelerometer"
+    	android:required="true" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -31,12 +35,27 @@
         <activity
             android:name="com.androidproject.ballthemall.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.androidproject.ballthemall.WorldSelectorActivity"
-            android:label="@string/title_activity_world_selector" 
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:label="@string/title_activity_world_selector"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.androidproject.ballthemall.LevelSelectorActivity"
+            android:label="@string/title_activity_level_selector"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.androidproject.ballthemall.LevelActivity"
+            android:label="@string/title_activity_level"
+			android:screenOrientation="landscape"
+			android:configChanges="orientation" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

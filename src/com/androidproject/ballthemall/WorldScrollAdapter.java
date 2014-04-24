@@ -1,10 +1,9 @@
 package com.androidproject.ballthemall;
 
-import java.sql.Date;
-import java.text.DateFormat;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,42 +12,39 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class LevelScrollAdapter extends BaseAdapter {
+public class WorldScrollAdapter extends BaseAdapter {
 
-	private ArrayList<String> levelList; 
+	private ArrayList<String> worldList; 
 	private int listRessource[] = {R.drawable.cadreword1,R.drawable.cadreword2,R.drawable.cadreword3,R.drawable.cadreword4};
 	private Context cont; // donne acces aux ressources de l'activity
 	private LayoutInflater infl; // recupere les informations de la ressource du layout
-	int a;
+	Typeface font;
 	
-	public LevelScrollAdapter(Context c){
+	public WorldScrollAdapter(Context c){
 		cont = c; // affectation du context de l'activity
-		levelList  = new ArrayList<String>();  // liste des donnees
+		worldList  = new ArrayList<String>();  // liste des donnees
 		infl = LayoutInflater.from(cont); // charge le fichier de vue qui sera rempli dans le getView
 		
-		levelList.add("WOWOWOW");
-		levelList.add("MOthaFUkA");
-		levelList.add("IONION");
-		levelList.add("Prout ");
+		worldList.add("MOdAFuKA");
+		worldList.add("Ghost Busters");
+		worldList.add("Kill' Em All");
+		worldList.add("Toxicity");
 		
-		a = R.drawable.cadreword1;
-		/*listRessource[0] = R.drawable.cadreword1;
-		listRessource[1] = R.drawable.cadreword2;
-		listRessource[2] = R.drawable.cadreword3;
-		listRessource[3] = R.drawable.cadreword4;*/
+		font = Typeface.createFromAsset(cont.getAssets(), "28 Days Later.ttf");
+
 
 	}
 	
 	@Override
 	// retourne le nombre d'objets de la liste
 	public int getCount() { 
-		return levelList.size();
+		return worldList.size();
 	}
 
 	@Override
 	// retourne l'element de la liste a la position i
 	public Object getItem(int i) { 
-		return levelList.get(i);
+		return worldList.get(i);
 	}
 
 	@Override
@@ -70,7 +66,7 @@ public class LevelScrollAdapter extends BaseAdapter {
 		 
 	    if(convertView == null) { // si la view n'a jamais ete instancie
 	        holder = new ViewHolder(); // class d'enregistrement
-	        convertView = infl.inflate(R.layout.icon_level_selector, null); // affectation de l'espace
+	        convertView = infl.inflate(R.layout.icon_world_selector, null); // affectation de l'espace
 	 
 	        holder.titleWorld = (TextView)convertView.findViewById(R.id.titleWorldAdapteur); // declaration du TextView date
 	        holder.iconWorld = (ImageButton)convertView.findViewById(R.id.imageWorldAdapter); // declaration du TextView daubed
@@ -82,8 +78,27 @@ public class LevelScrollAdapter extends BaseAdapter {
 	    }
 	 
 	    
-	    holder.titleWorld.setText(levelList.get(pos).toString()); // renseigne le champ date
+	    holder.titleWorld.setText(worldList.get(pos).toString()); // renseigne le champ titre
+	    holder.titleWorld.setTypeface(font);
 	    holder.iconWorld.setImageResource(listRessource[pos]);
+	    
+	    if(pos == 0){
+	    	
+		    holder.titleWorld.setPadding(160, 5, 100, 0);
+		    holder.iconWorld.setPadding(160, 5, 100, 0);
+		    
+	    } else if (pos == worldList.size()){
+	    	
+		    holder.titleWorld.setPadding(100, 5, 100, 0);
+		    holder.iconWorld.setPadding(100, 5, 100, 0);
+		    
+	    } else {
+	    	
+		    holder.titleWorld.setPadding(100, 5, 170, 0);
+		    holder.iconWorld.setPadding(100, 5, 170, 0);
+	    }
+	    
+
 
 	    
 	    return convertView;

@@ -13,5 +13,7 @@
     <string name="english"> English </string>
     <string name="francais"> Français </string>
     <string name="title_activity_world_selector">WorldSelectorActivity</string>
+    <string name="title_activity_level_selector">LevelSelectorActivity</string>
+    <string name="title_activity_level">LevelActivity</string>
 
 </resources>
