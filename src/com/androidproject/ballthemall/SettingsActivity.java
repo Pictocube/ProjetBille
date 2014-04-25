@@ -45,13 +45,18 @@ public class SettingsActivity extends Activity {
 			@Override
 			public void onCheckedChanged(final CompoundButton buttonView,final boolean isChecked) {
 					bgmEnable = isChecked; // affecte la valeur (true/false) a notre boolean suivant si le bouton est enclanche ou non
+
 					if(isChecked) {
 						statMusic = " Background Music is On ";
-						startService(MainActivity.svc);
+						//startService(MainActivity.svc);
+						if(!MainActivity.player.isPlaying()){
+							BackgroundSoundService.startMusic();
+						}
 						
 					} else {
 						statMusic = " Background Music is Off ";
-				        stopService(MainActivity.svc);
+				       //stopService(MainActivity.svc);
+						BackgroundSoundService.stopMusic();
 					}
 					textBGM.setText(statMusic); // affecte le text au TextView de description de l'etat de la musique
 			}

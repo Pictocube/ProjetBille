@@ -15,6 +15,8 @@ import android.view.SurfaceView;
 
 public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback {
     Ball mBoule;
+    Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+    
     public Ball getBoule() {
         return mBoule;
     }
@@ -49,25 +51,27 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
         mBoule = new Ball();
     }
 
-    @Override
     protected void onDraw(Canvas pCanvas) {
         // Dessiner le fond de l'écran en premier
     	
     	
-        pCanvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background), 0, 0, null);
+        //pCanvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background), 0, 0, null);
         //pCanvas.drawColor(Color.WHITE);
         if(mBlocks != null) {
             // Dessiner tous les blocs du labyrinthe
             for(WallBloc b : mBlocks) {
                 switch(b.getType()) {
-                case DEPART:
+                case START:
                     mPaint.setColor(Color.YELLOW);
                     break;
-                case ARRIVEE:
+                case END:
                     mPaint.setColor(Color.RED);
                     break;
-                case TROU:
+                case WALL:
                     mPaint.setColor(Color.BLACK);
+                    break;
+                case HOLE:
+                    mPaint.setColor(Color.GREEN);
                     break;
                 }
                 pCanvas.drawRect(b.getRectangle(), mPaint);
@@ -116,11 +120,13 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
 		@Override
         public void run() {
             Canvas canvas;
+            
             while (keepDrawing) {
                 canvas = null;
 
                 try {
                     canvas = mSurfaceHolder.lockCanvas();
+                    canvas.drawBitmap(background, 0, 0, null);
                     synchronized (mSurfaceHolder) {
                         onDraw(canvas);
                     }

@@ -1,63 +1,38 @@
 package com.androidproject.ballthemall;
 
-import android.app.Service;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.IBinder;
 
-public class BackgroundSoundService extends Service {
-   // private static final String TAG = null;
-    MediaPlayer player;
-    
-    public IBinder onBind(Intent arg0) {
+public class BackgroundSoundService {
 
-        return null;
-    }
+    public static MediaPlayer player;
     
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        player = MediaPlayer.create(this, R.raw.maintheme);
+    public BackgroundSoundService() {
+    	player = MediaPlayer.create(AppContext.getAppContext(),R.raw.maintheme);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
-        //player.start();
-    }
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        player.start();
-        return 1;
-    }
-
-    public void onStart(Intent intent, int startId) {
-        // TODO
-    }
-    public IBinder onUnBind(Intent arg0) {
-        // TODO Auto-generated method stub
-
-        return null;
-    }
-
-    public void onStop() {
-
-    }
-    public void onPause() {
-
-    }
-    @Override
-    public void onDestroy() {
-        player.stop();
-        player.release();
-    }
-
-    @Override
-    public void onLowMemory() {
-
     }
     
-    public void startMusic(){
-    	 player.start();
+    public static void startMusic(){
+    	player.reset();
+    	player = MediaPlayer.create(AppContext.getAppContext(),R.raw.maintheme);
+        player.setLooping(true); // Set looping
+        player.setVolume(100,100);
+    	player.start();
+   
     }
     
-    public void stopMusic(){
+    public static void stopMusic() {
     	player.stop();
+    }
+    public static void pauseMusic() {
+    	player.pause();
+    }    
+
+    public boolean isPlaying(){
+    	return player.isPlaying();
+    }
+    
+    public void setCurrentMusic(int res){
+    	
     }
 }
