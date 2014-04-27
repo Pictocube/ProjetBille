@@ -39,7 +39,7 @@ public class PhysicEngin {
  
             if(mBoule != null) {
                 // On met à jour les coordonnées de la boule
-                RectF hitBox = mBoule.putXAndY(x, y);
+                RectF hitBox = mBoule.putXAndY(x, y,mBoule.getWidth(),0,mBoule.getHeight(),0);
 
                 // Pour tous les blocs du labyrinthe
                 for(WallBloc block : mBlocks) {
@@ -53,8 +53,66 @@ public class PhysicEngin {
                             break;
 
                         case WALL:
-                        	/*mBoule.setPosX(block.getRectangle().centerX());
-                        	mBoule.setPosY(block.getRectangle().centerY());*/
+                        	
+                        	 mBoule.putXAndY(x, y,inter.left , inter.right,inter.top,inter.bottom);
+                        	 
+                        	 
+                        		//mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() - (inter.width()/2),inter.centerX() + (inter.width()/2));
+
+                        		//mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() - (inter.height()/2) ,inter.centerY() + (inter.height()/2));
+
+                        	
+                        	// ne fonctionne qu'avec une bordure
+                        	/*if(hitBox.right == inter.right) {
+                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.right - (inter.width()/2));
+                        	} else if(hitBox.left == inter.left) {
+                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.left - (inter.width()/2));
+                        	} 
+                        	
+                        	if(hitBox.top == inter.top) {
+                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.top - (inter.height()/2));
+                        	} else if(hitBox.bottom == inter.bottom) {
+                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.bottom - (inter.height()/2));
+                        	}*/
+                        	
+                        	
+                        	// préci sur le centre du bloc
+                        	/* if(mBoule.getX() + mBoule.RAYON == inter.left) {
+                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() - (inter.width()/2));
+                        	} else if(mBoule.getX() - mBoule.RAYON == inter.right) {
+                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() + (inter.width()/2));
+                        	} 
+                        	
+                        	if(mBoule.getY() + mBoule.RAYON == inter.top) {
+                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() - (inter.height()/2));
+                        	} else if(mBoule.getY() + mBoule.RAYON == inter.bottom) {
+                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() + (inter.height()/2));
+                        	}
+                        	 */
+                        	
+                        	
+                            
+                        	/* if ((hitBox.right == inter.right) || (hitBox.left == inter.left) ||(hitBox.bottom == inter.bottom) || (hitBox.top == inter.top)) {
+                        		 
+                        	    mBoule.changeXSpeed();
+                        		mBoule.changeYSpeed();
+                        		mBoule.reduceSpeedX(2);
+                        		mBoule.reduceSpeedY(2);
+                        	} */
+                        	
+                        	/*if ((hitBox.right == inter.right) || (hitBox.left== inter.left)){
+                        		mBoule.reduceSpeedX(2);
+                        		mBoule.changeXSpeed();
+                        	} 
+                        	
+                        	if ((hitBox.bottom == inter.bottom) || (hitBox.top == inter.top)){
+                        		mBoule.reduceSpeedY(2);
+                        		mBoule.changeYSpeed();
+                        	} */
+                        	
+                        	
+                        	/*mBoule.setPosX(block.getRectangle().centerX()-(block.getRectangle().width()/2));
+                        	mBoule.setPosY(block.getRectangle().centerY()-(block.getRectangle().height()/2));*/
                         	//mBoule.changeYSpeed();
                         	break;
                         case START:
@@ -121,103 +179,8 @@ public class PhysicEngin {
         mBlocks.add(new WallBloc(Type.WALL, 0, 18));
         mBlocks.add(new WallBloc(Type.WALL, 0, 19));
 
-        mBlocks.add(new WallBloc(Type.WALL, 1, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 1, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 2, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 2, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 3, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 3, 19));*/
-
-       // mBlocks.add(new WallBloc(Type.WALL, 4, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 1));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 2));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 3));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 4));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 6));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 7));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 8));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 9));
-        mBlocks.add(new WallBloc(Type.WALL, 4, 10));
-       /* mBlocks.add(new WallBloc(Type.WALL, 4, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 5, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 5, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 6, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 6, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 7, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 7, 1));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 2));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 6));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 9));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 10));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 11));
-        mBlocks.add(new WallBloc(Type.WALL, 7, 12));
-        //mBlocks.add(new WallBloc(Type.WALL, 7, 19));
-
-       // mBlocks.add(new WallBloc(Type.WALL, 8, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 8, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 8, 9));
-       // mBlocks.add(new WallBloc(Type.WALL, 8, 19));
-
-       // mBlocks.add(new WallBloc(Type.WALL, 9, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 9, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 9, 9));
-       /* mBlocks.add(new WallBloc(Type.WALL, 9, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 10, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 10, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 10, 9));
-        /*mBlocks.add(new WallBloc(Type.WALL, 10, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 11, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 11, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 11, 9));
-       /* mBlocks.add(new WallBloc(Type.WALL, 11, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 12, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 12, 1));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 2));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 3));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 4));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 9));
-        mBlocks.add(new WallBloc(Type.WALL, 12, 8));
-       /* mBlocks.add(new WallBloc(Type.WALL, 12, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 13, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 13, 8));
-       /* mBlocks.add(new WallBloc(Type.WALL, 13, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 14, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 14, 8));
-       /* mBlocks.add(new WallBloc(Type.WALL, 14, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 15, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 15, 8));
-      /*  mBlocks.add(new WallBloc(Type.WALL, 15, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 16, 0));*/
-        mBlocks.add(new WallBloc(Type.WALL, 16, 4));
-        mBlocks.add(new WallBloc(Type.WALL, 16, 5));
-        mBlocks.add(new WallBloc(Type.WALL, 16, 6));
-        mBlocks.add(new WallBloc(Type.WALL, 16, 7));
-        mBlocks.add(new WallBloc(Type.WALL, 16, 8));
-        mBlocks.add(new WallBloc(Type.WALL, 16, 9));
-       /* mBlocks.add(new WallBloc(Type.WALL, 16, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 17, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 17, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 18, 0));
-        mBlocks.add(new WallBloc(Type.WALL, 18, 19));
-
-        mBlocks.add(new WallBloc(Type.WALL, 19, 0));*/
+       
+        mBlocks.add(new WallBloc(Type.WALL, 19, 0));
         mBlocks.add(new WallBloc(Type.WALL, 19, 1));
         mBlocks.add(new WallBloc(Type.WALL, 19, 2));
         mBlocks.add(new WallBloc(Type.WALL, 19, 3));
@@ -236,13 +199,79 @@ public class PhysicEngin {
         mBlocks.add(new WallBloc(Type.WALL, 19, 16));
         mBlocks.add(new WallBloc(Type.WALL, 19, 17));
         mBlocks.add(new WallBloc(Type.WALL, 19, 18));
-       // mBlocks.add(new WallBloc(Type.WALL, 19, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 19, 19));
+        
+        
+        mBlocks.add(new WallBloc(Type.WALL, 1, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 2, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 3, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 4, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 5, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 6, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 7, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 8, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 9, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 10, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 11, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 12, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 13, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 14, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 15, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 16, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 17, 19));
+        mBlocks.add(new WallBloc(Type.WALL, 18, 19));
 
+
+        mBlocks.add(new WallBloc(Type.WALL, 1, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 2, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 3, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 4, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 5, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 6, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 7, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 8, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 9, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 10, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 11, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 12, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 13, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 14, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 15, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 16, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 17, 0));
+        mBlocks.add(new WallBloc(Type.WALL, 18, 0));*/
+    	
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 5));
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 6));
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 7));
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 8));
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 9));
+    	mBlocks.add(new WallBloc(Type.WALL, 5, 10));
+    	
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 5));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 6));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 7));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 8));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 9));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 10));
+    	
+    	mBlocks.add(new WallBloc(Type.WALL, 6, 5));
+    	mBlocks.add(new WallBloc(Type.WALL, 7, 5));
+    	mBlocks.add(new WallBloc(Type.WALL, 8, 5));
+    	mBlocks.add(new WallBloc(Type.WALL, 9, 5));
+    	
+    	mBlocks.add(new WallBloc(Type.WALL, 6, 10));
+    	mBlocks.add(new WallBloc(Type.WALL, 7, 10));
+    	mBlocks.add(new WallBloc(Type.WALL, 8, 10));
+    	mBlocks.add(new WallBloc(Type.WALL, 9, 10));
+
+    	
+    	
         WallBloc b = new WallBloc(Type.START, 2, 2);
         mBoule.setInitialRectangle(new RectF(b.getRectangle()));
         mBlocks.add(b);
 
-        mBlocks.add(new WallBloc(Type.END, 8, 11));
+       // mBlocks.add(new WallBloc(Type.END, 8, 11));
 
         return mBlocks;
     }

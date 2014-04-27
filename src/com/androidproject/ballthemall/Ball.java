@@ -13,6 +13,8 @@ public class Ball {
         return mCouleur;
     }
     
+    
+    
     // Vitesse maximale autorisée pour la boule
     private static final float MAX_SPEED = 10.0f;
     
@@ -40,16 +42,16 @@ public class Ball {
     public float getX() {
         return mX;
     }
-    public void setPosX(float pPosX) {
+    public void setPosX(float pPosX, float borderLeft, float borderRight) {
         mX = pPosX;
 
         // Si la boule sort du cadre, on rebondit
-        if(mX < RAYON) {
-            mX = RAYON;
+        if(mX < RAYON + borderRight) {
+            mX = RAYON + borderRight;
             // Rebondir, c'est changer la direction de la balle
             mSpeedY = -mSpeedY / REBOND;
-        } else if(mX > mWidth - RAYON) {
-            mX = mWidth - RAYON;
+        } else if(mX > borderLeft - RAYON) {
+            mX = borderLeft - RAYON;
             mSpeedY = -mSpeedY / REBOND;
         }
     }
@@ -60,16 +62,19 @@ public class Ball {
         return mY;
     }
 
-    public void setPosY(float pPosY) {
+    public void setPosY(float pPosY, float borderTop, float borderBottom) {
         mY = pPosY;
-        if(mY < RAYON) {
-            mY = RAYON;
+        if(mY < RAYON + borderBottom) {
+            mY = RAYON + borderBottom;
             mSpeedX = -mSpeedX / REBOND;
-        } else if(mY > mHeight - RAYON) {
-            mY = mHeight - RAYON;
+        } else if(mY > borderTop - RAYON) {
+            mY = borderTop - RAYON;
             mSpeedX = -mSpeedX / REBOND;
         }
     }
+    
+    
+
     
     // Vitesse sur l'axe x
     private float mSpeedX = 0;
@@ -85,6 +90,30 @@ public class Ball {
         mSpeedY = -mSpeedY;
     }
     
+    public void setSpeedX(float speedX){
+    	mSpeedX = speedX;
+    }
+    
+    public void setSpeedY(float speedY){
+    	mSpeedY = speedY;
+    }
+    
+    public void reduceSpeedX(int compens){
+    	mSpeedX = mSpeedX/compens;
+    }
+    
+    public void reduceSpeedY(int compens){
+    	mSpeedY = mSpeedY/compens;
+    }
+    
+    public float getSpeedX() {
+    	return mSpeedX;
+    }
+    
+    public float getSpeedY() {
+    	return mSpeedY;
+    }
+    
     // Taille de l'écran en hauteur
     private int mHeight = -1;
     public void setHeight(int pHeight) {
@@ -97,12 +126,20 @@ public class Ball {
         this.mWidth = pWidth;
     }
 
+    public float getWidth() {
+    	return mWidth;
+    }
+    
+    public float getHeight() {
+    	return mHeight;
+    }
+    
     public Ball() {
         mRectangle = new RectF();
     }
 
     // Mettre à jour les coordonnées de la boule
-    public RectF putXAndY(float pX, float pY) {
+    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom) {
         mSpeedX += pX / COMPENSATEUR;
         if(mSpeedX > MAX_SPEED)
             mSpeedX = MAX_SPEED;
@@ -115,14 +152,16 @@ public class Ball {
         if(mSpeedY < -MAX_SPEED)
             mSpeedY = -MAX_SPEED;
         
-        setPosX(mX + mSpeedY);
-        setPosY(mY + mSpeedX);
+        
+        setPosX(mX + mSpeedY,borderLeft,borderRight);
+        setPosY(mY + mSpeedX,borderTop,borderBottom);
         
         // Met à jour les coordonnées du rectangle de collision
         mRectangle.set(mX - RAYON, mY - RAYON, mX + RAYON, mY + RAYON);
         
         return mRectangle;
     }
+    
     
     // Remet la boule à sa position de départ
     public void reset() {

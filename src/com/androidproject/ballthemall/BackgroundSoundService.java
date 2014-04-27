@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 
 public class BackgroundSoundService {
 
-    public static MediaPlayer player;
+    public static MediaPlayer player = null;
     
     public BackgroundSoundService() {
     	player = MediaPlayer.create(AppContext.getAppContext(),R.raw.maintheme);

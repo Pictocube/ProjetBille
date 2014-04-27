@@ -16,6 +16,7 @@ import android.view.SurfaceView;
 public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback {
     Ball mBoule;
     Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+    Bitmap ballDesign = BitmapFactory.decodeResource(getResources(), R.drawable.texturesflammes);
     
     public Ball getBoule() {
         return mBoule;
