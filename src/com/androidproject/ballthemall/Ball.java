@@ -1,6 +1,7 @@
 package com.androidproject.ballthemall;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class Ball {
@@ -42,15 +43,17 @@ public class Ball {
     public float getX() {
         return mX;
     }
+    
+    
     public void setPosX(float pPosX, float borderLeft, float borderRight) {
         mX = pPosX;
 
         // Si la boule sort du cadre, on rebondit
-        if(mX < RAYON + borderRight) {
+        if((mX < RAYON + borderRight ) && (mSpeedY < 0 || borderRight == 0)) {
             mX = RAYON + borderRight;
             // Rebondir, c'est changer la direction de la balle
             mSpeedY = -mSpeedY / REBOND;
-        } else if(mX > borderLeft - RAYON) {
+        } else if(mX > borderLeft - RAYON && mSpeedY > 0) {
             mX = borderLeft - RAYON;
             mSpeedY = -mSpeedY / REBOND;
         }
@@ -64,13 +67,14 @@ public class Ball {
 
     public void setPosY(float pPosY, float borderTop, float borderBottom) {
         mY = pPosY;
-        if(mY < RAYON + borderBottom) {
+        if(mY < RAYON + borderBottom && (mSpeedX < 0 || borderBottom == 0)) {
             mY = RAYON + borderBottom;
             mSpeedX = -mSpeedX / REBOND;
-        } else if(mY > borderTop - RAYON) {
+        } else if(mY > borderTop - RAYON && mSpeedX > 0) {
             mY = borderTop - RAYON;
             mSpeedX = -mSpeedX / REBOND;
         }
+
     }
     
     
@@ -139,7 +143,7 @@ public class Ball {
     }
 
     // Mettre à jour les coordonnées de la boule
-    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom) {
+    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom,float centerY,float  heightW) {
         mSpeedX += pX / COMPENSATEUR;
         if(mSpeedX > MAX_SPEED)
             mSpeedX = MAX_SPEED;
@@ -154,7 +158,11 @@ public class Ball {
         
         
         setPosX(mX + mSpeedY,borderLeft,borderRight);
-        setPosY(mY + mSpeedX,borderTop,borderBottom);
+        
+        if (((centerY - heightW/2 != borderTop) && (centerY + heightW/2 != borderBottom)) || borderTop == mHeight || borderBottom == 0) {
+        	setPosY(mY + mSpeedX,borderTop,borderBottom);
+        }
+        
         
         // Met à jour les coordonnées du rectangle de collision
         mRectangle.set(mX - RAYON, mY - RAYON, mX + RAYON, mY + RAYON);

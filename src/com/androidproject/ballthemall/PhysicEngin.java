@@ -39,7 +39,7 @@ public class PhysicEngin {
  
             if(mBoule != null) {
                 // On met à jour les coordonnées de la boule
-                RectF hitBox = mBoule.putXAndY(x, y,mBoule.getWidth(),0,mBoule.getHeight(),0);
+                RectF hitBox = mBoule.putXAndY(x, y,mBoule.getWidth(),0,mBoule.getHeight(),0,0,0);
 
                 // Pour tous les blocs du labyrinthe
                 for(WallBloc block : mBlocks) {
@@ -54,66 +54,9 @@ public class PhysicEngin {
 
                         case WALL:
                         	
-                        	 mBoule.putXAndY(x, y,inter.left , inter.right,inter.top,inter.bottom);
+                        	 mBoule.putXAndY(x, y,inter.left , inter.right,inter.top,inter.bottom,inter.centerY(),inter.height());
                         	 
                         	 
-                        		//mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() - (inter.width()/2),inter.centerX() + (inter.width()/2));
-
-                        		//mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() - (inter.height()/2) ,inter.centerY() + (inter.height()/2));
-
-                        	
-                        	// ne fonctionne qu'avec une bordure
-                        	/*if(hitBox.right == inter.right) {
-                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.right - (inter.width()/2));
-                        	} else if(hitBox.left == inter.left) {
-                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.left - (inter.width()/2));
-                        	} 
-                        	
-                        	if(hitBox.top == inter.top) {
-                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.top - (inter.height()/2));
-                        	} else if(hitBox.bottom == inter.bottom) {
-                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.bottom - (inter.height()/2));
-                        	}*/
-                        	
-                        	
-                        	// préci sur le centre du bloc
-                        	/* if(mBoule.getX() + mBoule.RAYON == inter.left) {
-                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() - (inter.width()/2));
-                        	} else if(mBoule.getX() - mBoule.RAYON == inter.right) {
-                        		mBoule.setPosX(mBoule.getX()+mBoule.getSpeedX(),inter.centerX() + (inter.width()/2));
-                        	} 
-                        	
-                        	if(mBoule.getY() + mBoule.RAYON == inter.top) {
-                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() - (inter.height()/2));
-                        	} else if(mBoule.getY() + mBoule.RAYON == inter.bottom) {
-                        		mBoule.setPosY(mBoule.getY()+mBoule.getSpeedY(),inter.centerY() + (inter.height()/2));
-                        	}
-                        	 */
-                        	
-                        	
-                            
-                        	/* if ((hitBox.right == inter.right) || (hitBox.left == inter.left) ||(hitBox.bottom == inter.bottom) || (hitBox.top == inter.top)) {
-                        		 
-                        	    mBoule.changeXSpeed();
-                        		mBoule.changeYSpeed();
-                        		mBoule.reduceSpeedX(2);
-                        		mBoule.reduceSpeedY(2);
-                        	} */
-                        	
-                        	/*if ((hitBox.right == inter.right) || (hitBox.left== inter.left)){
-                        		mBoule.reduceSpeedX(2);
-                        		mBoule.changeXSpeed();
-                        	} 
-                        	
-                        	if ((hitBox.bottom == inter.bottom) || (hitBox.top == inter.top)){
-                        		mBoule.reduceSpeedY(2);
-                        		mBoule.changeYSpeed();
-                        	} */
-                        	
-                        	
-                        	/*mBoule.setPosX(block.getRectangle().centerX()-(block.getRectangle().width()/2));
-                        	mBoule.setPosY(block.getRectangle().centerY()-(block.getRectangle().height()/2));*/
-                        	//mBoule.changeYSpeed();
                         	break;
                         case START:
                             break;

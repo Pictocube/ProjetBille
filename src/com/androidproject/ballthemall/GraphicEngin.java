@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -16,7 +17,11 @@ import android.view.SurfaceView;
 public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback {
     Ball mBoule;
     Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
-    Bitmap ballDesign = BitmapFactory.decodeResource(getResources(), R.drawable.texturesflammes);
+    Bitmap ballDesign = BitmapFactory.decodeResource(getResources(), R.drawable.bille);
+    Drawable ballD = getResources().getDrawable(R.drawable.bille);
+    
+    Bitmap lol;
+    //ShapeDrawable ballShape = new ShapeDrawable(new OvalShape());
     
     public Ball getBoule() {
         return mBoule;
@@ -51,7 +56,13 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
 
         mBoule = new Ball();
     }
-
+    
+    private Drawable resizeBallImg(Drawable imageball) {
+        Bitmap b = ((BitmapDrawable)imageball).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 5, 5, false);
+        return new BitmapDrawable(getResources(), bitmapResized);
+    }
+    
     protected void onDraw(Canvas pCanvas) {
         // Dessiner le fond de l'écran en premier
     	
@@ -82,7 +93,13 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
         // Dessiner la boule
         if(mBoule != null) {
             mPaint.setColor(mBoule.getCouleur());
+            
+           // Bitmap lol = Bitmap.createScaledBitmap(ballDesign,mBoule.RAYON, mBoule.RAYON,true);
+            
+           // pCanvas.drawBitmap(lol, mBoule.getX(), mBoule.getY() ,mPaint);
+            
             pCanvas.drawCircle(mBoule.getX(), mBoule.getY(), Ball.RAYON, mPaint);
+            
         }
     }
 
