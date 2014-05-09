@@ -6,7 +6,7 @@ import android.graphics.RectF;
 
 public class Ball {
     // Rayon de la boule
-    public static final int RAYON = 10;
+    public final static int RAYON = 10;
     
     // Couleur de la boule
     private int mCouleur = Color.GREEN;
@@ -14,10 +14,8 @@ public class Ball {
         return mCouleur;
     }
     
-    
-    
     // Vitesse maximale autorisée pour la boule
-    private static final float MAX_SPEED = 10.0f;
+    private static final float MAX_SPEED = 6.0f;
     
     // Permet à la boule d'accélérer moins vite
     private static final float COMPENSATEUR = 15.0f;
@@ -143,7 +141,7 @@ public class Ball {
     }
 
     // Mettre à jour les coordonnées de la boule
-    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom,float centerY,float  heightW) {
+    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom, boolean isWall,boolean isVertical) {
         mSpeedX += pX / COMPENSATEUR;
         if(mSpeedX > MAX_SPEED)
             mSpeedX = MAX_SPEED;
@@ -156,12 +154,34 @@ public class Ball {
         if(mSpeedY < -MAX_SPEED)
             mSpeedY = -MAX_SPEED;
         
+        /*if (isWall) {
+            if(Math.abs(mSpeedX) < Math.abs(mSpeedY) || mSpeedY == 0){
+            	setPosX(mX + mSpeedY,borderLeft,borderRight);
+            } else if (Math.abs(mSpeedX) > Math.abs(mSpeedY) ||mSpeedX == 0){
+            	setPosY(mY + mSpeedX,borderTop,borderBottom);
+            }
+            
+        } else {*/
         
-        setPosX(mX + mSpeedY,borderLeft,borderRight);
-        
-        if (((centerY - heightW/2 != borderTop) && (centerY + heightW/2 != borderBottom)) || borderTop == mHeight || borderBottom == 0) {
+        if(!isWall) {
+        	setPosX(mX + mSpeedY,borderLeft,borderRight);
         	setPosY(mY + mSpeedX,borderTop,borderBottom);
+        } else {
+        	if(isVertical) {
+        		setPosX(mX + mSpeedY,borderLeft,borderRight);
+        	} else {
+        		setPosY(mY + mSpeedX,borderTop,borderBottom);
+        	}
         }
+
+        	
+        	
+        //}
+
+        
+        //if (((centerY - heightW/2 != borderTop) && (centerY + heightW/2 != borderBottom)) || borderTop == mHeight || borderBottom == 0) {
+        	
+        //}
         
         
         // Met à jour les coordonnées du rectangle de collision
