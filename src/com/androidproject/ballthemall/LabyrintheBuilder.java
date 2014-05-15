@@ -12,10 +12,10 @@ public class LabyrintheBuilder {
 
 	// Construit le labyrinthe
     public static List<WallBloc> getLabyrinthe() {
-    	String[][] t = getTabLab();
+    	//String[][] t = getTabLab();
         mBlocks = new ArrayList<WallBloc>();
 
-        for (int i = 0; i < 20 ;i++) {
+        /*for (int i = 0; i < 20 ;i++) {
         	
         	for (int j = 0 ; j < 20 ; j++) {
         		
@@ -25,15 +25,24 @@ public class LabyrintheBuilder {
         		
         	}
         }
+    	*/
     	
-        
-
-        mBlocks.add(new WallBloc(Type.END, 17, 12,1,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 3, 0,1,6));
+    	mBlocks.add(new WallBloc(Type.WALL, 6, 3,1,9));
+    	mBlocks.add(new WallBloc(Type.WALL, 7, 3,3,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 8,5,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 15, 0,1,9));
+    	mBlocks.add(new WallBloc(Type.WALL, 18, 5,2,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 16, 3,2,1));
+    	
+    	
+    	
+        mBlocks.add(new WallBloc(Type.END, 18,1 ,1,1));
 
         return mBlocks;
     }
     
-    public static String[][] getTabLab() {
+   /* public static String[][] getTabLab() {
     	String[][] levelTab = {	{"b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"},
     						   	{"b","e","e","e","w","e","e","e","e","e","w","e","e","e","e","e","e","e","e","b"},
 						    	{"b","e","e","e","w","e","e","e","e","e","w","e","e","e","e","e","e","e","e","b"},
@@ -55,6 +64,6 @@ public class LabyrintheBuilder {
 						    	{"b","e","e","e","e","e","e","w","e","e","e","e","e","e","e","e","e","e","e","b"},
 						    	{"b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"}};
     	return levelTab;
-    }
+    }*/
 
 }

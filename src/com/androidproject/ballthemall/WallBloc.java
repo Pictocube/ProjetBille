@@ -34,6 +34,6 @@ public class WallBloc {
     public WallBloc(Type pType, int pX, int pY,int nbCaseX, int nbCaseY) {
     	setScreenSize();
         this.mType = pType;
-        this.mRectangle = new RectF(pX * (SCREEN_WIDTH/20), pY * (SCREEN_HEIGHT/20), (pX + nbCaseX) * (SCREEN_WIDTH/20), (pY + nbCaseY) * (SCREEN_HEIGHT/20));
+        this.mRectangle = new RectF(pX * (SCREEN_WIDTH/20), pY * (SCREEN_HEIGHT/12), (pX + nbCaseX) * (SCREEN_WIDTH/20), (pY + nbCaseY) * (SCREEN_HEIGHT/12));
     }
 }
