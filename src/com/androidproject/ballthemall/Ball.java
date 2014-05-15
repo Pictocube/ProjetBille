@@ -1,11 +1,12 @@
 package com.androidproject.ballthemall;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class Ball {
     // Rayon de la boule
-    public static final int RAYON = 10;
+    public final static int RAYON = 10;
     
     // Couleur de la boule
     private int mCouleur = Color.GREEN;
@@ -14,7 +15,7 @@ public class Ball {
     }
     
     // Vitesse maximale autorisée pour la boule
-    private static final float MAX_SPEED = 10.0f;
+    private static final float MAX_SPEED = 6.0f;
     
     // Permet à la boule d'accélérer moins vite
     private static final float COMPENSATEUR = 15.0f;
@@ -40,16 +41,18 @@ public class Ball {
     public float getX() {
         return mX;
     }
-    public void setPosX(float pPosX) {
+    
+    
+    public void setPosX(float pPosX, float borderLeft, float borderRight) {
         mX = pPosX;
 
         // Si la boule sort du cadre, on rebondit
-        if(mX < RAYON) {
-            mX = RAYON;
+        if((mX < RAYON + borderRight ) && (mSpeedY < 0 || borderRight == 0)) {
+            mX = RAYON + borderRight;
             // Rebondir, c'est changer la direction de la balle
             mSpeedY = -mSpeedY / REBOND;
-        } else if(mX > mWidth - RAYON) {
-            mX = mWidth - RAYON;
+        } else if(mX > borderLeft - RAYON && mSpeedY > 0) {
+            mX = borderLeft - RAYON;
             mSpeedY = -mSpeedY / REBOND;
         }
     }
@@ -60,16 +63,20 @@ public class Ball {
         return mY;
     }
 
-    public void setPosY(float pPosY) {
+    public void setPosY(float pPosY, float borderTop, float borderBottom) {
         mY = pPosY;
-        if(mY < RAYON) {
-            mY = RAYON;
+        if(mY < RAYON + borderBottom && (mSpeedX < 0 || borderBottom == 0)) {
+            mY = RAYON + borderBottom;
             mSpeedX = -mSpeedX / REBOND;
-        } else if(mY > mHeight - RAYON) {
-            mY = mHeight - RAYON;
+        } else if(mY > borderTop - RAYON && mSpeedX > 0) {
+            mY = borderTop - RAYON;
             mSpeedX = -mSpeedX / REBOND;
         }
+
     }
+    
+    
+
     
     // Vitesse sur l'axe x
     private float mSpeedX = 0;
@@ -85,6 +92,30 @@ public class Ball {
         mSpeedY = -mSpeedY;
     }
     
+    public void setSpeedX(float speedX){
+    	mSpeedX = speedX;
+    }
+    
+    public void setSpeedY(float speedY){
+    	mSpeedY = speedY;
+    }
+    
+    public void reduceSpeedX(int compens){
+    	mSpeedX = mSpeedX/compens;
+    }
+    
+    public void reduceSpeedY(int compens){
+    	mSpeedY = mSpeedY/compens;
+    }
+    
+    public float getSpeedX() {
+    	return mSpeedX;
+    }
+    
+    public float getSpeedY() {
+    	return mSpeedY;
+    }
+    
     // Taille de l'écran en hauteur
     private int mHeight = -1;
     public void setHeight(int pHeight) {
@@ -97,12 +128,20 @@ public class Ball {
         this.mWidth = pWidth;
     }
 
+    public float getWidth() {
+    	return mWidth;
+    }
+    
+    public float getHeight() {
+    	return mHeight;
+    }
+    
     public Ball() {
         mRectangle = new RectF();
     }
 
     // Mettre à jour les coordonnées de la boule
-    public RectF putXAndY(float pX, float pY) {
+    public RectF putXAndY(float pX, float pY, float borderLeft , float borderRight, float borderTop, float borderBottom, boolean isWall,boolean isVertical) {
         mSpeedX += pX / COMPENSATEUR;
         if(mSpeedX > MAX_SPEED)
             mSpeedX = MAX_SPEED;
@@ -115,14 +154,42 @@ public class Ball {
         if(mSpeedY < -MAX_SPEED)
             mSpeedY = -MAX_SPEED;
         
-        setPosX(mX + mSpeedY);
-        setPosY(mY + mSpeedX);
+        /*if (isWall) {
+            if(Math.abs(mSpeedX) < Math.abs(mSpeedY) || mSpeedY == 0){
+            	setPosX(mX + mSpeedY,borderLeft,borderRight);
+            } else if (Math.abs(mSpeedX) > Math.abs(mSpeedY) ||mSpeedX == 0){
+            	setPosY(mY + mSpeedX,borderTop,borderBottom);
+            }
+            
+        } else {*/
+        
+        if(!isWall) {
+        	setPosX(mX + mSpeedY,borderLeft,borderRight);
+        	setPosY(mY + mSpeedX,borderTop,borderBottom);
+        } else {
+        	if(isVertical) {
+        		setPosX(mX + mSpeedY,borderLeft,borderRight);
+        	} else {
+        		setPosY(mY + mSpeedX,borderTop,borderBottom);
+        	}
+        }
+
+        	
+        	
+        //}
+
+        
+        //if (((centerY - heightW/2 != borderTop) && (centerY + heightW/2 != borderBottom)) || borderTop == mHeight || borderBottom == 0) {
+        	
+        //}
+        
         
         // Met à jour les coordonnées du rectangle de collision
         mRectangle.set(mX - RAYON, mY - RAYON, mX + RAYON, mY + RAYON);
         
         return mRectangle;
     }
+    
     
     // Remet la boule à sa position de départ
     public void reset() {

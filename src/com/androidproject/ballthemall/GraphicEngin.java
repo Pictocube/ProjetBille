@@ -3,12 +3,15 @@ package com.androidproject.ballthemall;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -16,6 +19,14 @@ import android.view.SurfaceView;
 public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback {
     Ball mBoule;
     Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+    Bitmap ballDesign = BitmapFactory.decodeResource(getResources(), R.drawable.billetest);
+    
+
+	Bitmap lol = Bitmap.createScaledBitmap(ballDesign,2*mBoule.RAYON, 2*mBoule.RAYON,true);
+    
+    //Bitmap mutableBitmap = ballDesign.copy(Bitmap.Config.ARGB_8888, true);
+    //mutableBitmap.reconfigure(mBoule.RAYON, mBoule.RAYON, mutableBitmap.getConfig());
+    
     
     public Ball getBoule() {
         return mBoule;
@@ -49,8 +60,11 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
         mPaint.setStyle(Paint.Style.FILL);
 
         mBoule = new Ball();
-    }
+       
 
+    }
+    
+    
     protected void onDraw(Canvas pCanvas) {
         // Dessiner le fond de l'écran en premier
     	
@@ -80,8 +94,12 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
 
         // Dessiner la boule
         if(mBoule != null) {
-            mPaint.setColor(mBoule.getCouleur());
-            pCanvas.drawCircle(mBoule.getX(), mBoule.getY(), Ball.RAYON, mPaint);
+           mPaint.setColor(mBoule.getCouleur());
+           
+           pCanvas.drawBitmap(lol, mBoule.getX()-mBoule.RAYON, mBoule.getY() - mBoule.RAYON,null);
+
+           //pCanvas.drawCircle(mBoule.getX(), mBoule.getY(), Ball.RAYON, mPaint);
+            
         }
     }
 
@@ -127,6 +145,7 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
                 try {
                     canvas = mSurfaceHolder.lockCanvas();
                     canvas.drawBitmap(background, 0, 0, null);
+                    
                     synchronized (mSurfaceHolder) {
                         onDraw(canvas);
                     }

@@ -9,9 +9,6 @@ import android.view.WindowManager;
 public class WallBloc {
     enum  Type {WALL, HOLE, START, END};
     
-
-    
-    private float SIZE = Ball.RAYON * 3.5f;
     private float SCREEN_WIDTH = 0;
     
     private float SCREEN_HEIGHT = 0;
@@ -30,16 +27,13 @@ public class WallBloc {
     public void setScreenSize() {
         WindowManager wm = (WindowManager) AppContext.getAppContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
-        Point size = new Point();
-        //display.getSize(size);
         SCREEN_WIDTH = display.getWidth();  
         SCREEN_HEIGHT = display.getHeight();
     }
 
-    public WallBloc(Type pType, int pX, int pY) {
+    public WallBloc(Type pType, int pX, int pY,int nbCaseX, int nbCaseY) {
     	setScreenSize();
         this.mType = pType;
-        //this.mRectangle = new RectF(pX * SIZE, pY * SIZE, (pX + 1) * SIZE, (pY + 1) * SIZE);
-        this.mRectangle = new RectF(pX * (SCREEN_WIDTH/20), pY * (SCREEN_HEIGHT/20), (pX + 1) * (SCREEN_WIDTH/20), (pY + 1) * (SCREEN_HEIGHT/20));
+        this.mRectangle = new RectF(pX * (SCREEN_WIDTH/20), pY * (SCREEN_HEIGHT/20), (pX + nbCaseX) * (SCREEN_WIDTH/20), (pY + nbCaseY) * (SCREEN_HEIGHT/20));
     }
 }
