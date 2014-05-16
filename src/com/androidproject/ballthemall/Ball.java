@@ -15,7 +15,7 @@ public class Ball {
     }
     
     // Vitesse maximale autorisée pour la boule
-    private static final float MAX_SPEED = 6.0f;
+    private static final float MAX_SPEED = 4.0f;
     
     // Permet à la boule d'accélérer moins vite
     private static final float COMPENSATEUR = 15.0f;

@@ -16,6 +16,8 @@ public class LevelGridAdapter extends BaseAdapter{
 	private Context cont; // donne acces aux ressources de l'activity
 	private LayoutInflater infl; // recupere les informations de la ressource du layout
 	Typeface font;
+	public static String itemIndex;
+	public static String levelID = "";
 	
 	public LevelGridAdapter(Context c){
 		cont = c; // affectation du context de l'activity
@@ -55,7 +57,9 @@ public class LevelGridAdapter extends BaseAdapter{
 	public View getView(int pos, View convertView, ViewGroup parent) { 
 		
 		ViewHolder holder;
-		 
+		
+		itemIndex = levelList.get(pos).toString();
+		
 	    if(convertView == null) { // si la view n'a jamais ete instancie
 	        holder = new ViewHolder(); // class d'enregistrement
 	        convertView = infl.inflate(R.layout.icon_level_selector, null); // affectation de l'espace
@@ -69,7 +73,7 @@ public class LevelGridAdapter extends BaseAdapter{
 	    }
 	 
 	    
-	    holder.numberLevel.setText(levelList.get(pos).toString()); // renseigne le champ titre
+	    holder.numberLevel.setText(itemIndex); // renseigne le champ titre
 	    holder.numberLevel.setTypeface(font);
 	    holder.numberLevel.setTextSize(40);
 
@@ -84,6 +88,7 @@ public class LevelGridAdapter extends BaseAdapter{
 		
 			Intent i = new Intent(cont, LevelActivity.class);
 			cont.startActivity(i);
+			levelID = "w1n"+itemIndex;
 		}
 		
 	};

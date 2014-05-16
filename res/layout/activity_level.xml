@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     tools:context=".LevelActivity" >
 
-
+    <Chronometer
+        android:id="@+id/chrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format="%s"
+        android:textSize="40sp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"/>
 
 </RelativeLayout>

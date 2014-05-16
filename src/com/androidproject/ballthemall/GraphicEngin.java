@@ -3,22 +3,21 @@ package com.androidproject.ballthemall;
 import java.util.List;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Chronometer;
 
 
 public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback {
     Ball mBoule;
-    Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+    Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.w1n1);
     Bitmap ballDesign = BitmapFactory.decodeResource(getResources(), R.drawable.billetest);
     
 
@@ -27,6 +26,10 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
     //Bitmap mutableBitmap = ballDesign.copy(Bitmap.Config.ARGB_8888, true);
     //mutableBitmap.reconfigure(mBoule.RAYON, mBoule.RAYON, mutableBitmap.getConfig());
     
+    private Chronometer chronometer;
+    long elapsedTime=0;
+    String currentTime="";
+    long startTime=SystemClock.elapsedRealtime();
     
     public Ball getBoule() {
         return mBoule;
@@ -60,8 +63,10 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
         mPaint.setStyle(Paint.Style.FILL);
 
         mBoule = new Ball();
-       
-
+        
+        chronometer = new Chronometer(pContext);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
     }
     
     
@@ -139,12 +144,31 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
         public void run() {
             Canvas canvas;
             
+            int width = background.getWidth();
+            int height = background.getHeight();
+            float scaleWidth = ((float) 800) / width;
+            float scaleHeight = ((float) 480) / height;
+            // CREATE A MATRIX FOR THE MANIPULATION
+            Matrix matrix = new Matrix();
+            // RESIZE THE BIT MAP
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            // "RECREATE" THE NEW BITMAP
+            Bitmap resizedBackground= Bitmap.createBitmap(background, 0, 0, width, height, matrix, false);
+
+            
+            
+            
+            
             while (keepDrawing) {
                 canvas = null;
 
                 try {
                     canvas = mSurfaceHolder.lockCanvas();
-                    canvas.drawBitmap(background, 0, 0, null);
+                    canvas.drawBitmap(resizedBackground, 0, 0, null);
+                    
+                    long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    canvas.drawText(String.valueOf(elapsedMillis), 10, 10, mPaint);
                     
                     synchronized (mSurfaceHolder) {
                         onDraw(canvas);

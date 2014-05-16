@@ -27,17 +27,14 @@ public class LabyrintheBuilder {
         }
     	*/
     	
-    	mBlocks.add(new WallBloc(Type.WALL, 3, 0,1,6));
+    	mBlocks.add(new WallBloc(Type.WALL, 3, 0,1,8));
     	mBlocks.add(new WallBloc(Type.WALL, 6, 3,1,9));
     	mBlocks.add(new WallBloc(Type.WALL, 7, 3,3,1));
-    	mBlocks.add(new WallBloc(Type.WALL, 10, 8,5,1));
-    	mBlocks.add(new WallBloc(Type.WALL, 15, 0,1,9));
-    	mBlocks.add(new WallBloc(Type.WALL, 18, 5,2,1));
-    	mBlocks.add(new WallBloc(Type.WALL, 16, 3,2,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 10, 8,4,1));
+    	mBlocks.add(new WallBloc(Type.WALL, 13, 0,1,9));    	
     	
     	
-    	
-        mBlocks.add(new WallBloc(Type.END, 18,1 ,1,1));
+        mBlocks.add(new WallBloc(Type.END, 19,5 ,1,1));
 
         return mBlocks;
     }

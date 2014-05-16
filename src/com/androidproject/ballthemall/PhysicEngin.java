@@ -115,7 +115,7 @@ public class PhysicEngin {
         mBlocks.add(new WallBloc(Type.WALL, 6, 10,5,1));
         mBlocks.add(new WallBloc(Type.WALL, 10, 5,1,5));*/
     	
-        WallBloc b = new WallBloc(Type.START, 2, 2,1,1);
+        WallBloc b = new WallBloc(Type.START, 1, 1,1,1);
         mBoule.setInitialRectangle(new RectF(b.getRectangle()));
         mBlocks.add(b);
 

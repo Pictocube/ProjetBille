@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class WorldScrollAdapter extends BaseAdapter {
 
 	private ArrayList<String> worldList; 
-	private int listRessource[] = {R.drawable.cadreword1,R.drawable.cadreword2,R.drawable.cadreword3,R.drawable.cadreword4};
+	private int listRessource[] = {R.drawable.cadrew1,R.drawable.cadrew2,R.drawable.cadrew3,R.drawable.cadrew4};
 	private Context cont; // donne acces aux ressources de l'activity
 	private LayoutInflater infl; // recupere les informations de la ressource du layout
 	Typeface font;
@@ -25,9 +25,9 @@ public class WorldScrollAdapter extends BaseAdapter {
 		worldList  = new ArrayList<String>();  // liste des donnees
 		infl = LayoutInflater.from(cont); // charge le fichier de vue qui sera rempli dans le getView
 		
-		worldList.add("MOdAFuKA");
+		worldList.add("Kill' Em All"); 
 		worldList.add("Ghost Busters");
-		worldList.add("Kill' Em All");
+		worldList.add("MOdAFuKA");
 		worldList.add("Toxicity");
 		
 		font = Typeface.createFromAsset(cont.getAssets(), "28 Days Later.ttf");

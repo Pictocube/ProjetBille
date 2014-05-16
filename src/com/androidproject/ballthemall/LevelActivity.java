@@ -7,6 +7,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.widget.Chronometer;
+import android.widget.Toast;
 
 public class LevelActivity extends Activity {
     // Identifiant de la boîte de dialogue de victoire
@@ -19,16 +22,18 @@ public class LevelActivity extends Activity {
     
     // Le moteur physique du jeu
     private PhysicEngin mEngine = null;
+    
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mView = new GraphicEngin(this);
+        mView.setKeepScreenOn(true);
         //setContentView(R.layout.activity_level);
         //mView.setBackgroundResource(R.drawable.background);
         setContentView(mView);
-        
-        //mView = (GraphicEngin) findViewById(R.id.graphicenginlevel);
+
         
         mEngine = new PhysicEngin(this);
 
@@ -58,8 +63,8 @@ public class LevelActivity extends Activity {
         switch(id) {
         case VICTORY_DIALOG:
             builder.setCancelable(false)
-            .setMessage("Bravo, vous avez gagné !")
-            .setTitle("GG bro ! tu vois quand tu veux !")
+            .setMessage("GG bro ! Continu comme ça et t'auras un Cookie !")
+            .setTitle("Oh yeah !!")
             .setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -72,8 +77,8 @@ public class LevelActivity extends Activity {
 
         case DEFEAT_DIALOG:
             builder.setCancelable(false)
-            .setMessage("La Terre a été détruite à cause de vos erreurs.")
-            .setTitle("Bah bravo !")
+            .setMessage(" You are definitly a little shit ..")
+            .setTitle("Mouahaha !")
             .setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -90,6 +95,7 @@ public class LevelActivity extends Activity {
         // A chaque fois qu'une boîte de dialogue est lancée, on arrête le moteur physique
         mEngine.stop();
     }
+    
     
     @Override
 	public void onBackPressed() {
