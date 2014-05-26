@@ -9,15 +9,16 @@ public class LevelSelectorActivity extends Activity {
 
 	GridView listViewLevel;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_level_selector);
 		listViewLevel = (GridView)findViewById(R.id.listViewLevel);  // recupere la ListView 
 		listViewLevel.setAdapter(new LevelGridAdapter(LevelSelectorActivity.this));
+
 	}
 
-	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

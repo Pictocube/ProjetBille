@@ -30,8 +30,6 @@ public class LevelActivity extends Activity {
         super.onCreate(savedInstanceState);
         mView = new GraphicEngin(this);
         mView.setKeepScreenOn(true);
-        //setContentView(R.layout.activity_level);
-        //mView.setBackgroundResource(R.drawable.background);
         setContentView(mView);
 
         
@@ -63,7 +61,7 @@ public class LevelActivity extends Activity {
         switch(id) {
         case VICTORY_DIALOG:
             builder.setCancelable(false)
-            .setMessage("GG bro ! Continu comme ça et t'auras un Cookie !")
+            .setMessage(mView.getChronoValue()+" ! Continu comme ça et t'auras un Cookie !")
             .setTitle("Oh yeah !!")
             .setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
                 @Override

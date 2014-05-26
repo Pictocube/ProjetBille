@@ -31,7 +31,7 @@ public class LevelGridAdapter extends BaseAdapter{
 		
 		font = Typeface.createFromAsset(cont.getAssets(), "28 Days Later.ttf");
 
-
+		
 	}
 	
 	// retourne le nombre d'objets de la liste
@@ -64,7 +64,7 @@ public class LevelGridAdapter extends BaseAdapter{
 	        holder = new ViewHolder(); // class d'enregistrement
 	        convertView = infl.inflate(R.layout.icon_level_selector, null); // affectation de l'espace
 	 
-	        holder.numberLevel = (Button)convertView.findViewById(R.id.buttonlevel); // declaration du TextView date
+	        holder.numberLevel = (Button)convertView.findViewById(R.id.buttonlevel); 
 	        holder.numberLevel.setOnClickListener(onButtonClicListener);
 	        
 	        convertView.setTag(holder); // enregistre la ligne de la ListView
@@ -81,14 +81,18 @@ public class LevelGridAdapter extends BaseAdapter{
 		
 	}
 	
+	
 	private View.OnClickListener onButtonClicListener = new View.OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
 		
 			Intent i = new Intent(cont, LevelActivity.class);
+			i.putExtra("background","bg.jpg");
 			cont.startActivity(i);
-			levelID = "w1n"+itemIndex;
+
+			Button hodor =  (Button)arg0.findViewById(R.id.buttonlevel);
+			levelID = hodor.getText().toString();
 		}
 		
 	};
