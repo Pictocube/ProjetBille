@@ -45,14 +45,65 @@ public class LabyrintheBuilder {
     }
     
     public static Bitmap getAddaptedBackground(){
-    	String lvlId = LevelGridAdapter.levelID;
+    	String wrldId = WorldScrollAdapter.WolrdID;
+     	String lvlId = LevelGridAdapter.levelID;
     	
-    	if (lvlId.equals("1")) {
-    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1nf);
-    	} else {
-    		
-    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1n1);
-    	}
+     	if (wrldId.equals("Kill' Em All")) {
+     		
+	    	if (lvlId.equals("1")) {
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1n1);
+	    	} else if(lvlId.equals("10")){
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1nf);
+	    	} else {
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	}
+     	} else if (wrldId.equals("Ghost Busters")) {
+     		
+	    	if (lvlId.equals("1")) {
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w2n1);
+	    	} else if(lvlId.equals("10")){
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w2nf);
+	    	} else {
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w2nx);
+	    	}
+     	} else if (wrldId.equals("MOdAFuKA")) {
+     		
+	    	if (lvlId.equals("1")) {
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w3n1);
+	    	} else if(lvlId.equals("10")){
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	} else {
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	}
+     	} else if (wrldId.equals("Toxicity")) {
+     		
+	    	if (lvlId.equals("1")) {
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	} else if(lvlId.equals("10")){
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	} else {
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	}
+     	} else {
+     		
+	    	if (lvlId.equals("1")) {
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	} else if(lvlId.equals("10")){
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	} else {
+	    		
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    	}
+     	}
     	
     	
     	int width = background.getWidth();

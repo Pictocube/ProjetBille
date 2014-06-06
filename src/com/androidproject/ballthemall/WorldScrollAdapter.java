@@ -3,11 +3,13 @@ package com.androidproject.ballthemall;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,8 +20,10 @@ public class WorldScrollAdapter extends BaseAdapter {
 	private int listRessource[] = {R.drawable.cadrew1,R.drawable.cadrew2,R.drawable.cadrew3,R.drawable.cadrew4};
 	private Context cont; // donne acces aux ressources de l'activity
 	private LayoutInflater infl; // recupere les informations de la ressource du layout
+	protected static String WolrdID = "";
 	Typeface font;
-	
+	ViewHolder holder;
+	 
 	public WorldScrollAdapter(Context c){
 		cont = c; // affectation du context de l'activity
 		worldList  = new ArrayList<String>();  // liste des donnees
@@ -61,8 +65,6 @@ public class WorldScrollAdapter extends BaseAdapter {
 	@Override
 	// retourne la view correspondant a un element de la liste
 	public View getView(int pos, View convertView, ViewGroup parent) { 
-		
-		ViewHolder holder;
 		 
 	    if(convertView == null) { // si la view n'a jamais ete instancie
 	        holder = new ViewHolder(); // class d'enregistrement
@@ -81,6 +83,7 @@ public class WorldScrollAdapter extends BaseAdapter {
 	    holder.titleWorld.setText(worldList.get(pos).toString()); // renseigne le champ titre
 	    holder.titleWorld.setTypeface(font);
 	    holder.iconWorld.setImageResource(listRessource[pos]);
+	    holder.titleWorld.setOnClickListener(onButtonClicListener);
 	    
 	    if(pos == 0){
 	    	
@@ -104,4 +107,19 @@ public class WorldScrollAdapter extends BaseAdapter {
 	    return convertView;
 		
 	}
+	
+	private View.OnClickListener onButtonClicListener = new View.OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+		
+			Intent i = new Intent(cont,LevelSelectorActivity.class);
+			cont.startActivity(i);
+
+			TextView currentlvl =  (TextView)arg0.findViewById(R.id.titleWorldAdapteur);
+			WolrdID = currentlvl.getText().toString();
+
+		}
+		
+	};
 }

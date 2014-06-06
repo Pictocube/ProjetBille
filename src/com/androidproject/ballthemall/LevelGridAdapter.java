@@ -25,7 +25,7 @@ public class LevelGridAdapter extends BaseAdapter{
 		
 		levelList = new ArrayList<String>();
 		
-		for (int i =1 ; i <= 20 ; i++){
+		for (int i =1 ; i <= 10 ; i++){
 			levelList.add(String.valueOf(i));
 		}
 		
@@ -88,7 +88,6 @@ public class LevelGridAdapter extends BaseAdapter{
 		public void onClick(View arg0) {
 		
 			Intent i = new Intent(cont, LevelActivity.class);
-			i.putExtra("background","bg.jpg");
 			cont.startActivity(i);
 
 			Button hodor =  (Button)arg0.findViewById(R.id.buttonlevel);
