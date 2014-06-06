@@ -106,15 +106,19 @@ public class GraphicEngin extends SurfaceView implements SurfaceHolder.Callback 
                 switch(b.getType()) {
                 case START:
                     mPaint.setColor(Color.YELLOW);
+                    mPaint.setShadowLayer(0,0,0,0);
                     break;
                 case END:
                     mPaint.setColor(Color.RED);
+                    mPaint.setShadowLayer(0,0,0,0);
                     break;
                 case WALL:
                     mPaint.setColor(Color.BLACK);
+                    mPaint.setShadowLayer(5, 5, 5, Color.WHITE);
                     break;
                 case HOLE:
                     mPaint.setColor(Color.GREEN);
+                    mPaint.setShadowLayer(0,0,0,0);
                     break;
                 }
                 pCanvas.drawRect(b.getRectangle(), mPaint);
