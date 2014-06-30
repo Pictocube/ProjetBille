@@ -20,19 +20,10 @@ public class WorldSelectorActivity extends Activity {
 		listViewWorlds = (HorizontalListView)findViewById(R.id.listViewWorld);  // recupere la ListView 
 		 
 		listViewWorlds.setAdapter(new WorldScrollAdapter(WorldSelectorActivity.this));
-		//listViewWorlds.setOnItemClickListener(onWorldSelectListener);
+
 	}
 
-	// listener clic sur un item de la liste
-	/*private ListView.OnItemClickListener onWorldSelectListener = new ListView.OnItemClickListener() { 
 
-		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-			Intent i = new Intent(WorldSelectorActivity.this,LevelSelectorActivity.class);
-			WorldSelectorActivity.this.startActivity(i);
-		}
-		
-	};*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -109,17 +109,11 @@ public class PhysicEngin {
         
         mBlocks = LabyrintheBuilder.getLabyrinthe();
     	
-       /* mBlocks = new ArrayList<WallBloc>();
-        mBlocks.add(new WallBloc(Type.WALL, 5, 5,5,1));
-        mBlocks.add(new WallBloc(Type.WALL, 5, 6,1,5));
-        mBlocks.add(new WallBloc(Type.WALL, 6, 10,5,1));
-        mBlocks.add(new WallBloc(Type.WALL, 10, 5,1,5));*/
-    	
         WallBloc b = new WallBloc(Type.START, 1, 1,1,1);
         mBoule.setInitialRectangle(new RectF(b.getRectangle()));
         mBlocks.add(b);
 
-       // mBlocks.add(new WallBloc(Type.END, 8, 11,1,1));
+
 
         return mBlocks;
     }

@@ -16,39 +16,85 @@ public class LabyrintheBuilder {
 	
 	private static Bitmap background = null;
 	private static List<WallBloc> mBlocks = null;
+	private static String wrldId = WorldScrollAdapter.WolrdID;
+	private static String lvlId = LevelGridAdapter.levelID;
 
 	// Construit le labyrinthe
     public static List<WallBloc> getLabyrinthe() {
-    	//String[][] t = getTabLab();
+    	wrldId = WorldScrollAdapter.WolrdID;
+    	lvlId = LevelGridAdapter.levelID;
+
         mBlocks = new ArrayList<WallBloc>();
 
-        /*for (int i = 0; i < 20 ;i++) {
-        	
-        	for (int j = 0 ; j < 20 ; j++) {
-        		
-        		if("w".equals(t[i][j])) {
-        			mBlocks.add(new WallBloc(Type.WALL, i ,j,1,1));
-        		}
-        		
+       /* if (wrldId.equals("Kill' Em All")) {
+        	if(lvlId.equals("1")){
+        		mBlocks.add(new WallBloc(Type.WALL, 3, 0,1,8));
+            	mBlocks.add(new WallBloc(Type.WALL, 6, 3,1,9));
+            	mBlocks.add(new WallBloc(Type.WALL, 7, 3,3,1));
+            	mBlocks.add(new WallBloc(Type.WALL, 10, 8,4,1));
+            	mBlocks.add(new WallBloc(Type.WALL, 13, 0,1,9)); 
+        	} else if(lvlId.equals("2")) {
+        		mBlocks.add(new WallBloc(Type.WALL, 0, 4,4,1));
+            	mBlocks.add(new WallBloc(Type.WALL, 6, 0,1,9));
+            	mBlocks.add(new WallBloc(Type.HOLE, 11, 7,1,5));
+            	mBlocks.add(new WallBloc(Type.WALL, 15, 0,1,8));
+        	} else if(lvlId.equals("3")) {
+        		mBlocks.add(new WallBloc(Type.WALL, 0, 5,6,1));
+            	mBlocks.add(new WallBloc(Type.WALL, 5, 2,1,4));
+            	mBlocks.add(new WallBloc(Type.HOLE, 12, 0,1,9));
         	}
+ 
+        }*/
+    	
+        if (wrldId.equals("Kill' Em All")) {
+        	//if(lvlId.equals("1")){
+        		mBlocks.add(new WallBloc(Type.WALL,0,10,7,1));
+        		mBlocks.add(new WallBloc(Type.WALL,3,0,1,5));
+        		mBlocks.add(new WallBloc(Type.WALL,3,7,6,1));
+        		mBlocks.add(new WallBloc(Type.WALL,6,1,4,1));
+        		mBlocks.add(new WallBloc(Type.WALL,9,2,1,7));
+        		mBlocks.add(new WallBloc(Type.WALL,12,0,1,6));
+        		mBlocks.add(new WallBloc(Type.WALL,12,10,1,4));
+        		mBlocks.add(new WallBloc(Type.WALL,15,0,1,2));
+        		mBlocks.add(new WallBloc(Type.WALL,15,4,1,6));
+        		mBlocks.add(new WallBloc(Type.WALL,18,5,2,1));       	
+        	//}
+        } else if (wrldId.equals("Ghost Busters")) {
+	        	mBlocks.add(new WallBloc(Type.WALL,0,3,4,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,4,2,1,2));
+	        	mBlocks.add(new WallBloc(Type.WALL,7,0,1,6));
+	        	mBlocks.add(new WallBloc(Type.WALL,2,6,6,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,2,7,1,3));
+	        	mBlocks.add(new WallBloc(Type.WALL,5,9,1,3));
+	        	mBlocks.add(new WallBloc(Type.WALL,10,2,1,10));
+	        	mBlocks.add(new WallBloc(Type.WALL,11,2,7,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,13,5,7,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,13,6,1,4));
+	        	mBlocks.add(new WallBloc(Type.WALL,16,8,4,1));
+        } else if (wrldId.equals("MOdAFuKA")) {
+	        	mBlocks.add(new WallBloc(Type.WALL,5,0,1,6));
+	        	mBlocks.add(new WallBloc(Type.WALL,8,2,5,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,13,4,1,6));
+	        	mBlocks.add(new WallBloc(Type.WALL,14,8,4,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,14,4,6,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,0,8,4,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,8,3,1,9));
+	        	mBlocks.add(new WallBloc(Type.WALL,9,5,2,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,11,8,2,1));
+	        	mBlocks.add(new WallBloc(Type.WALL,17,11,1,1));
+
         }
-    	*/
-    	
-    	mBlocks.add(new WallBloc(Type.WALL, 3, 0,1,8));
-    	mBlocks.add(new WallBloc(Type.WALL, 6, 3,1,9));
-    	mBlocks.add(new WallBloc(Type.WALL, 7, 3,3,1));
-    	mBlocks.add(new WallBloc(Type.WALL, 10, 8,4,1));
-    	mBlocks.add(new WallBloc(Type.WALL, 13, 0,1,9));    	
     	
     	
-        mBlocks.add(new WallBloc(Type.END, 19,5 ,1,1));
+        mBlocks.add(new WallBloc(Type.END, 19,6 ,1,1));
 
         return mBlocks;
     }
     
     public static Bitmap getAddaptedBackground(){
-    	String wrldId = WorldScrollAdapter.WolrdID;
-     	String lvlId = LevelGridAdapter.levelID;
+    	wrldId = WorldScrollAdapter.WolrdID;
+    	lvlId = LevelGridAdapter.levelID;
+
      	SharedPreferences preferences = AppContext.getAppContext().getSharedPreferences("GamerPref", Context.MODE_PRIVATE);
      	
      	Boolean mactive = preferences.getBoolean("activMusic", false);
@@ -133,29 +179,5 @@ public class LabyrintheBuilder {
         Bitmap resizedBackground= Bitmap.createBitmap(background, 0, 0, width, height, matrix, false);
     	return resizedBackground;
     }
-    
-   /* public static String[][] getTabLab() {
-    	String[][] levelTab = {	{"b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"},
-    						   	{"b","e","e","e","w","e","e","e","e","e","w","e","e","e","e","e","e","e","e","b"},
-						    	{"b","e","e","e","w","e","e","e","e","e","w","e","e","e","e","e","e","e","e","b"},
-						    	{"b","e","e","e","w","e","e","e","e","e","w","e","e","e","e","e","e","e","e","b"},
-						    	{"b","e","e","e","w","e","e","e","e","e","w","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","w","w","w","e","e","e","e","e","w","e","e","w","e","e","w","w","w","b"},
-						    	{"b","e","e","e","e","e","e","w","w","w","w","w","w","w","e","e","w","e","e","b"},
-						    	{"b","e","e","e","e","e","e","e","e","e","w","e","e","e","e","e","w","e","e","b"},
-						    	{"b","e","w","w","w","w","e","e","e","e","w","e","e","e","e","e","w","e","e","b"},
-						    	{"b","e","e","e","e","w","e","e","e","e","w","e","e","e","e","e","w","e","e","b"},
-						    	{"b","e","e","e","e","w","e","e","e","e","w","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","w","w","w","w","e","e","e","e","e","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","w","e","e","e","e","e","e","e","e","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","w","e","e","e","e","e","e","e","e","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","w","e","e","e","e","w","w","w","w","e","e","w","e","e","e","e","e","b"},
-						    	{"b","e","e","e","e","e","e","w","e","e","e","e","e","w","w","w","w","e","e","b"},
-						    	{"b","e","e","e","e","e","e","w","e","e","e","e","e","e","e","e","e","e","e","b"},
-						    	{"b","e","e","e","e","e","e","w","e","e","e","e","e","e","e","e","e","e","e","b"},
-						    	{"b","e","e","e","e","e","e","w","e","e","e","e","e","e","e","e","e","e","e","b"},
-						    	{"b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"}};
-    	return levelTab;
-    }*/
 
 }
