@@ -1,6 +1,7 @@
 package com.androidproject.ballthemall;
 
 import android.media.MediaPlayer;
+import android.net.Uri;
 
 public class BackgroundSoundService {
 
@@ -12,9 +13,9 @@ public class BackgroundSoundService {
         player.setVolume(100,100);
     }
     
-    public static void startMusic(){
+    public static void startMusic(int musicUri){
     	player.reset();
-    	player = MediaPlayer.create(AppContext.getAppContext(),R.raw.maintheme);
+    	player = MediaPlayer.create(AppContext.getAppContext(),musicUri);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
     	player.start();

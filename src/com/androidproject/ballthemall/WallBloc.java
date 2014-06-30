@@ -13,6 +13,15 @@ public class WallBloc {
     
     private float SCREEN_HEIGHT = 0;
     
+    public float posX = 0;
+    public float posY = 0;
+    public float sizeX = 0;
+    public float sizeY = 0;
+
+    public float caseX = 0;
+    public float caseY = 0;
+    
+    
     private Type mType = null;
     private RectF mRectangle = null;
     
@@ -33,7 +42,14 @@ public class WallBloc {
 
     public WallBloc(Type pType, int pX, int pY,int nbCaseX, int nbCaseY) {
     	setScreenSize();
-        this.mType = pType;
-        this.mRectangle = new RectF(pX * (SCREEN_WIDTH/20), pY * (SCREEN_HEIGHT/12), (pX + nbCaseX) * (SCREEN_WIDTH/20), (pY + nbCaseY) * (SCREEN_HEIGHT/12));
+    	this.mType = pType;
+    	this.caseX = SCREEN_WIDTH/20;
+        this.caseY = SCREEN_HEIGHT/12;
+        this.posX = pX * (SCREEN_WIDTH/20);
+        this.posY = pY * (SCREEN_HEIGHT/12);
+        this.sizeX = (pX + nbCaseX) * (SCREEN_WIDTH/20);
+        this.sizeY =  (pY + nbCaseY) * (SCREEN_HEIGHT/12);
+        this.mRectangle = new RectF(posX, posY,sizeX,sizeY);
+        // on peut récuperer les position pour construire une image
     }
 }

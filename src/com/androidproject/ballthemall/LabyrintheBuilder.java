@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -47,9 +49,15 @@ public class LabyrintheBuilder {
     public static Bitmap getAddaptedBackground(){
     	String wrldId = WorldScrollAdapter.WolrdID;
      	String lvlId = LevelGridAdapter.levelID;
-    	
+     	SharedPreferences preferences = AppContext.getAppContext().getSharedPreferences("GamerPref", Context.MODE_PRIVATE);
+     	
+     	Boolean mactive = preferences.getBoolean("activMusic", false);
+     	
      	if (wrldId.equals("Kill' Em All")) {
-     		
+     		if(mactive){
+     			BackgroundSoundService.startMusic(R.raw.dragula);
+     		}
+
 	    	if (lvlId.equals("1")) {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1n1);
 	    	} else if(lvlId.equals("10")){
@@ -57,9 +65,12 @@ public class LabyrintheBuilder {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1nf);
 	    	} else {
 	    		
-	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w1nx);
 	    	}
      	} else if (wrldId.equals("Ghost Busters")) {
+     		if(mactive){
+     			BackgroundSoundService.startMusic(R.raw.ghostbustters);
+     		}
      		
 	    	if (lvlId.equals("1")) {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w2n1);
@@ -71,6 +82,9 @@ public class LabyrintheBuilder {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w2nx);
 	    	}
      	} else if (wrldId.equals("MOdAFuKA")) {
+     		if(mactive){
+     			BackgroundSoundService.startMusic(R.raw.spank);
+     		}
      		
 	    	if (lvlId.equals("1")) {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w3n1);
@@ -79,7 +93,7 @@ public class LabyrintheBuilder {
 	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
 	    	} else {
 	    		
-	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.background);
+	    		background = BitmapFactory.decodeResource(AppContext.getAppContext().getResources(), R.drawable.w3nx);
 	    	}
      	} else if (wrldId.equals("Toxicity")) {
      		

@@ -63,16 +63,15 @@ public class LevelActivity extends Activity {
             builder.setCancelable(false)
             .setMessage(mView.getChronoValue()+" ! Continu comme ça et t'auras un Cookie !")
             .setTitle("Oh yeah !!")
-            .setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
+            .setNeutralButton("Quitter", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    // L'utilisateur peut recommencer s'il le veut
-                    mEngine.reset();
-                    mEngine.resume();
+                	BackgroundSoundService.stopMusic();
+                	finish();
                 }
             });
             break;
-
+ 
         case DEFEAT_DIALOG:
             builder.setCancelable(false)
             .setMessage(" You are definitly a little shit ..")
@@ -97,6 +96,7 @@ public class LevelActivity extends Activity {
     
     @Override
 	public void onBackPressed() {
+    	BackgroundSoundService.stopMusic();
 	    this.finish();
 	}
 }

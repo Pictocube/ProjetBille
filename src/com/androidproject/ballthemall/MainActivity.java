@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 		super.onResume();
         if(prefs.getBoolean("activMusic", false)){
         	//startService(svc);
-        	player.startMusic();
+        	BackgroundSoundService.startMusic(R.raw.maintheme);
         }
 	}
 	

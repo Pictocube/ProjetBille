@@ -50,7 +50,7 @@ public class SettingsActivity extends Activity {
 						statMusic = " Background Music is On ";
 						//startService(MainActivity.svc);
 						if(!MainActivity.player.isPlaying()){
-							BackgroundSoundService.startMusic();
+							BackgroundSoundService.startMusic(R.raw.maintheme);
 						}
 						
 					} else {
